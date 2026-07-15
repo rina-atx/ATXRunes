@@ -1,0 +1,219 @@
+# ATXRunes rune definitions.
+#
+# Built-in placeholders:
+# %tier%, %level%, %rune_tier%, %rune_level%, %max_tier%
+# {tier}, {level}, {rune_tier}, {rune_level}, {max_tier}
+# {value}, {value_int}, {base_value}, {rune_type}, {rune_id}
+#
+# Custom placeholders can be created per rune:
+# placeholders:
+#   damage: 4 * %tier%
+#   cooldown: 20 * %level%
+#
+# Custom placeholders can be used anywhere in lore, effect args, conditions, filters, and mutators:
+# args:
+#   amount: "%damage%"
+#   cooldown: "%cooldown%"
+#
+# Simple math is supported: +, -, *, /, decimals, negatives, and parentheses.
+# If the final value is only math, ATXRunes passes a number into ATXCore.
+# If the final value contains text, ATXRunes keeps it as text after placeholder replacement.
+
+runes:
+  VITALITY:
+    enabled: true
+    display-name: "<red>Rune of Vitality"
+    item:
+      material: HEART_OF_THE_SEA
+      custom-model-data: 0
+    base-value: 2.0
+    placeholders:
+      health: 2 + (2 * %tier%)
+    description:
+      - "<gray>Increases maximum health by <red>%health%<gray>."
+    effects:
+      - id: add_max_health
+        data:
+          amount: "%health%"
+
+  SWIFTNESS:
+    enabled: true
+    display-name: "<aqua>Rune of Swiftness"
+    item:
+      material: FEATHER
+      custom-model-data: 0
+    placeholders:
+      speed: 0.01 * %tier%
+    description:
+      - "<gray>Increases movement speed by <aqua>%speed%<gray>."
+    effects:
+      - id: add_movement_speed
+        data:
+          amount: "%speed%"
+
+  MINER:
+    enabled: true
+    display-name: "<yellow>Rune of the Miner"
+    item:
+      material: GOLDEN_PICKAXE
+      custom-model-data: 0
+    placeholders:
+      amplifier: (%tier% - 1) / 3
+      duration: 600 + (60 * %tier%)
+    description:
+      - "<gray>Grants haste while equipped."
+      - "<dark_gray>Duration refresh: <yellow>%duration% ticks"
+    effects:
+      - id: add_potion
+        data:
+          type: FAST_DIGGING
+          duration: "%duration%"
+          amplifier: "%amplifier%"
+
+  SHARPNESS:
+    enabled: true
+    display-name: "<red>Rune of Sharpness"
+    item:
+      material: IRON_SWORD
+      custom-model-data: 0
+    base-value: 2.0
+    placeholders:
+      damage: 4 * %tier%
+    description:
+      - "<gray>Damages enemies on melee hits."
+      - "<dark_gray>Bonus damage: <red>%damage%"
+    effects:
+      - id: damage
+        data:
+          amount: "%damage%"
+        triggers:
+          - melee_attack
+        mutators:
+          - id: target_victim
+
+  GUARDIAN:
+    enabled: true
+    display-name: "<gold>Rune of the Guardian"
+    item:
+      material: SHIELD
+      custom-model-data: 0
+    placeholders:
+      chance: 20 + (3 * %tier%)
+      duration: 40 + (10 * %tier%)
+    description:
+      - "<gray>Sometimes grants resistance when hit."
+      - "<dark_gray>Chance: <gold>%chance%% <dark_gray>Duration: <gold>%duration% ticks"
+    effects:
+      - id: add_potion
+        data:
+          chance: "%chance%"
+          type: DAMAGE_RESISTANCE
+          duration: "%duration%"
+          amplifier: 1
+        triggers:
+          - take_damage
+        filters:
+          entities:
+            - player
+
+  BERSERKER:
+    enabled: true
+    display-name: "<dark_red>Rune of the Berserker"
+    item:
+      material: REDSTONE
+      custom-model-data: 0
+    placeholders:
+      damage: 1.5 * %tier%
+    description:
+      - "<gray>Increases attack damage by <red>%damage%<gray>."
+    effects:
+      - id: add_attack_damage
+        data:
+          amount: "%damage%"
+
+  FORTRESS:
+    enabled: true
+    display-name: "<blue>Rune of the Fortress"
+    item:
+      material: IRON_CHESTPLATE
+      custom-model-data: 0
+    placeholders:
+      armor: 1 + %tier%
+    description:
+      - "<gray>Adds <blue>%armor%<gray> armor while equipped."
+    effects:
+      - id: add_armor
+        data:
+          amount: "%armor%"
+
+  FORTUNE:
+    enabled: true
+    display-name: "<green>Rune of Fortune"
+    item:
+      material: EMERALD
+      custom-model-data: 0
+    placeholders:
+      luck: "%tier%"
+    description:
+      - "<gray>Raises luck by <green>%luck%<gray>."
+    effects:
+      - id: set_luck
+        data:
+          amount: "%luck%"
+
+  FLAME:
+    enabled: true
+    display-name: "<gold>Rune of Flame"
+    item:
+      material: BLAZE_POWDER
+      custom-model-data: 0
+    placeholders:
+      chance: 10 + (4 * %tier%)
+      duration: 40 + (10 * %tier%)
+    description:
+      - "<gray>Has a chance to burn enemies on melee hits."
+      - "<dark_gray>Chance: <gold>%chance%%"
+    effects:
+      - id: ignite
+        data:
+          chance: "%chance%"
+          duration: "%duration%"
+        triggers:
+          - melee_attack
+        mutators:
+          - id: target_victim
+
+  MENDER:
+    enabled: true
+    display-name: "<light_purple>Rune of Mending"
+    item:
+      material: GHAST_TEAR
+      custom-model-data: 0
+    placeholders:
+      heal: 1 + %tier%
+      cooldown: 18 - %tier%
+    description:
+      - "<gray>Sometimes heals you when taking damage."
+      - "<dark_gray>Heal: <light_purple>%heal% <dark_gray>Cooldown: <light_purple>%cooldown%s"
+    effects:
+      - id: heal
+        data:
+          chance: 20
+          cooldown: "%cooldown%"
+          amount: "%heal%"
+        triggers:
+          - take_damage
+
+  SAMPLE:
+    enabled: true
+    display-name: "<red>Rune of Sample"
+    item:
+      material: IRON_SWORD
+    base-value: 2.0
+    placeholders:
+      cooldown: 20 * %level%
+      damage: 4 * %tier%
+    description:
+      - "<gray>Sample damage: <red>%damage%"
+      - "<gray>Sample cooldown: <yellow>%cooldown% ticks"
+    effects: []
