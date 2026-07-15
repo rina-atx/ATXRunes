@@ -1,0 +1,124 @@
+settings:
+  rune-slots: 4
+  storage-size: 45
+  trade-timeout-seconds: 90
+  passive-refresh-seconds: 30
+
+forging:
+  cost:
+    material: AMETHYST_SHARD
+    amount: 8
+
+reforging:
+  cost:
+    material: NETHER_STAR
+    amount: 1
+  keep-type: true
+
+guis:
+  main:
+    title: "<dark_purple>Runes"
+    size: 27
+    buttons:
+      slots:
+        slot: 10
+        material: NETHER_STAR
+        name: "<aqua>Rune Slots"
+        lore:
+          - "<gray>Equip passive runes."
+      forge:
+        slot: 12
+        material: ANVIL
+        name: "<green>Forge Runes"
+        lore:
+          - "<gray>Create a new rune."
+      reforge:
+        slot: 14
+        material: SMITHING_TABLE
+        name: "<gold>Re-forge Runes"
+        lore:
+          - "<gray>Upgrade a rune's tier."
+      storage:
+        slot: 16
+        material: ENDER_CHEST
+        name: "<light_purple>Rune Storage"
+        lore:
+          - "<gray>View stored runes."
+      trade:
+        slot: 22
+        material: EMERALD
+        name: "<yellow>Rune Trading"
+        lore:
+          - "<gray>Use /runes trade <player>."
+  slots:
+    title: "<dark_purple>Rune Slots"
+    size: 54
+    equipped-slots: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    storage-slots: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53]
+    empty-slot-item:
+      material: GRAY_STAINED_GLASS_PANE
+      name: "<gray>Empty Rune Slot"
+      lore:
+        - "<dark_gray>Click a stored rune below to equip."
+  storage:
+    title: "<dark_purple>Rune Storage"
+    size: 54
+    storage-slots: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+    buttons:
+      back:
+        slot: 49
+        material: ARROW
+        name: "<yellow>Back"
+        lore: []
+  forge:
+    title: "<dark_purple>Forge Runes"
+    size: 27
+    buttons:
+      forge:
+        slot: 11
+        material: ANVIL
+        name: "<green>Forge Random Rune"
+        lore:
+          - "<gray>Cost is read from forging.cost."
+      info:
+        slot: 15
+        material: BOOK
+        name: "<aqua>Tier Progression"
+        lore:
+          - "<gray>Tier 1 -> Tier 7"
+      back:
+        slot: 22
+        material: ARROW
+        name: "<yellow>Back"
+        lore: []
+  reforge:
+    title: "<dark_purple>Re-forge Runes"
+    size: 54
+    storage-slots: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+    buttons:
+      info:
+        slot: 49
+        material: SMITHING_TABLE
+        name: "<gold>Pick a Rune"
+        lore:
+          - "<gray>Click a stored rune to upgrade it."
+  trade:
+    title: "<dark_purple>Trade with {target}"
+    size: 54
+    offer-slot: 20
+    accept-slot: 22
+    target-offer-slot: 24
+    storage-slots: [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53]
+    labels:
+      your-offer:
+        slot: 4
+        material: EMERALD
+        name: "<green>Your Offer"
+        lore:
+          - "<gray>Select from storage below."
+      target-offer:
+        slot: 8
+        material: EMERALD
+        name: "<aqua>{target}'s Offer"
+        lore:
+          - "<gray>Updates as they choose."
