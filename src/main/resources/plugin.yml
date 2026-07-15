@@ -1,0 +1,19 @@
+name: ATXRunes
+main: com.atx.runes.ATXRunesPlugin
+version: 1.0.0
+api-version: '1.20'
+author: ATX
+depend:
+  - ATXCore
+commands:
+  runes:
+    description: Opens the rune menu and manages runes.
+    usage: /runes
+    aliases: [rune, atxrunes]
+permissions:
+  atxrunes.use:
+    description: Allows opening and using rune menus.
+    default: true
+  atxrunes.admin:
+    description: Allows admin rune commands.
+    default: op
